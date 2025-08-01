@@ -4,6 +4,10 @@ using Project.EventBus.Abstractions.Handlers;
 
 namespace Project.EventBus.Abstractions.Managers;
 
+/// <summary>
+/// Implementação em memória do gerenciador de assinaturas.
+/// Armazena os handlers registrados em um dicionário por tipo de evento ou tópico.
+/// </summary>
 public sealed class InMemorySubscriptionManager : ISubscriptionManager
 {
     private readonly Dictionary<string, List<SubscriptionInfo>> _subscriptions = new();
@@ -31,9 +35,9 @@ public sealed class InMemorySubscriptionManager : ISubscriptionManager
         if (HasSubscription<TEvent>(topic))
             return;
 
-        SubscriptionInfo subscription = new (typeof(TEvent), typeof(THandler), topic);
+        SubscriptionInfo subscription = new(typeof(TEvent), typeof(THandler), topic);
 
-        _subscriptions[topic ?? typeof(TEvent).Name] = new () { subscription };
+        _subscriptions[topic ?? typeof(TEvent).Name] = new() { subscription };
     }
 
     public void RemoveSubscription<TEvent, THandler>(string? topic) where TEvent : EventBase where THandler : IEventHandler<TEvent>
