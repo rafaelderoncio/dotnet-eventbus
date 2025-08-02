@@ -1,13 +1,8 @@
-using System;
-using Project.EventBus.Abstractions.Events;
-using Project.EventBus.Abstractions.Handlers;
+using Company.SDK.EventBus.Abstractions.Events;
+using Company.SDK.EventBus.Abstractions.Handlers;
 
-namespace Project.EventBus.Abstractions.Managers;
+namespace Company.SDK.EventBus.Abstractions.Managers;
 
-/// <summary>
-/// Implementação em memória do gerenciador de assinaturas.
-/// Armazena os handlers registrados em um dicionário por tipo de evento ou tópico.
-/// </summary>
 public sealed class InMemorySubscriptionManager : ISubscriptionManager
 {
     private readonly Dictionary<string, List<SubscriptionInfo>> _subscriptions = new();
@@ -16,13 +11,13 @@ public sealed class InMemorySubscriptionManager : ISubscriptionManager
 
     public void Clear() => _subscriptions.Clear();
 
-    public bool HasSubscription<TEvent>(string? topic) where TEvent : EventBase
+    public bool HasSubscription<TEvent>(string? topic) where TEvent : Event
     {
         return _subscriptions.ContainsKey(topic ?? typeof(TEvent).Name) &&
                _subscriptions[topic ?? typeof(TEvent).Name].Any();
     }
 
-    public IEnumerable<SubscriptionInfo> GetHandlersForEvent<TEvent>(string? topic) where TEvent : EventBase
+    public IEnumerable<SubscriptionInfo> GetHandlersForEvent<TEvent>(string? topic) where TEvent : Event
     {
         if (!_subscriptions.ContainsKey(topic ?? typeof(TEvent).Name))
             return new List<SubscriptionInfo> { };
@@ -30,7 +25,7 @@ public sealed class InMemorySubscriptionManager : ISubscriptionManager
         return _subscriptions[topic ?? typeof(TEvent).Name];
     }
 
-    public void AddSubscription<TEvent, THandler>(string? topic) where TEvent : EventBase where THandler : IEventHandler<TEvent>
+    public void AddSubscription<TEvent, THandler>(string? topic) where TEvent : Event where THandler : IEventHandler<TEvent>
     {
         if (HasSubscription<TEvent>(topic))
             return;
@@ -40,7 +35,7 @@ public sealed class InMemorySubscriptionManager : ISubscriptionManager
         _subscriptions[topic ?? typeof(TEvent).Name] = new() { subscription };
     }
 
-    public void RemoveSubscription<TEvent, THandler>(string? topic) where TEvent : EventBase where THandler : IEventHandler<TEvent>
+    public void RemoveSubscription<TEvent, THandler>(string? topic) where TEvent : Event where THandler : IEventHandler<TEvent>
     {
         if (!_subscriptions.ContainsKey(topic ?? typeof(TEvent).Name))
             return;
