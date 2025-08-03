@@ -1,5 +1,4 @@
 using Amazon.SQS;
-using Company.SDK.EventBus.AmazonSimpleQueueService;
 
 namespace Company.SDK.EventBus.AmazonSimpleQueueService;
 

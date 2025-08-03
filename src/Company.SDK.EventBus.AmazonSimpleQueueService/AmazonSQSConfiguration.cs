@@ -1,5 +1,3 @@
-using System;
-
 namespace Company.SDK.EventBus.AmazonSimpleQueueService;
 
 public class AmazonSQSConfiguration

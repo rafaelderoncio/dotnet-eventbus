@@ -16,31 +16,20 @@ public class AmazonSQSEventBus(
     ILifetimeScope lifetimeScope,
     string scopeName = "amazon_simple_queue_service_event_bus") : IEventBus
 {
-    private readonly IAmazonSQSConection _connection = conection ?? throw new ArgumentNullException(nameof(conection));
-    private readonly ISubscriptionManager _subscriptionManager = subscriptionManager ?? throw new ArgumentNullException(nameof(subscriptionManager));
-    private readonly ILogger<IEventBus> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-    private readonly ILifetimeScope _lifetimeScope = lifetimeScope ?? throw new ArgumentNullException(nameof(lifetimeScope));
-    private readonly string _scopeName = scopeName ?? throw new ArgumentNullException(nameof(scopeName));
+    private readonly IAmazonSQSConection _connection = conection
+        ?? throw new ArgumentNullException(nameof(conection), "Connection cannot be null.");
+    private readonly ISubscriptionManager _subscriptionManager = subscriptionManager
+        ?? throw new ArgumentNullException(nameof(subscriptionManager), "Subscription manager cannot be null.");
+    private readonly ILogger<IEventBus> _logger = logger
+        ?? throw new ArgumentNullException(nameof(logger), "Logger cannot be null.");
+    private readonly ILifetimeScope _lifetimeScope = lifetimeScope
+        ?? throw new ArgumentNullException(nameof(lifetimeScope), "Lifetime scope cannot be null.");
+    private readonly string _scopeName = scopeName 
+        ?? throw new ArgumentNullException(nameof(scopeName), "Scope name cannot be null.");
 
     public void Publish<TEvent>(TEvent @event, string topic = null, CancellationToken cancellation = default) where TEvent : Event
     {
-        try
-        {
-            _logger.LogInformation("Starting publishing of event {Event}", typeof(TEvent).Name);
-
-            PublishAsync(@event, topic, cancellation).GetAwaiter().GetResult();
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError("Error publishing event {Event}", typeof(TEvent).Name);
-            _logger.LogError(ex, ex.Message + "\n" + ex.StackTrace);
-
-            throw;
-        }
-        finally
-        {
-            _logger.LogInformation("Finalizing publication of event {Event}", typeof(TEvent).Name);
-        }
+        throw new NotImplementedException("Use PublishAsync instead for asynchronous operations.");
     }
 
     public async Task PublishAsync<TEvent>(TEvent @event, string topic = null, CancellationToken cancellation = default) where TEvent : Event
@@ -74,7 +63,7 @@ public class AmazonSQSEventBus(
         where THandler : IEventHandler<TEvent>
         where TEvent : Event
     {
-        throw new NotImplementedException();
+        throw new NotImplementedException("Use SubscribeAsync instead for asynchronous operations.");
     }
 
     public async Task SubscribeAsync<THandler, TEvent>(int maxMessages = 10, string topic = null, CancellationToken cancellation = default)

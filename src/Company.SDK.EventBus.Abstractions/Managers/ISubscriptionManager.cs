@@ -10,15 +10,15 @@ public interface ISubscriptionManager
 
     void Clear();
 
-    bool HasSubscription<TEvent>(string? topic) where TEvent : Event;
+    bool HasSubscription<TEvent>(string topic = null) where TEvent : Event;
 
-    IEnumerable<SubscriptionInfo> GetHandlersForEvent<TEvent>(string? topic) where TEvent : Event;
+    IEnumerable<SubscriptionInfo> GetHandlersForEvent<TEvent>(string topic = null) where TEvent : Event;
 
-    void AddSubscription<TEvent, THandler>(string? topic)
+    void AddSubscription<TEvent, THandler>(string topic = null)
         where TEvent : Event
         where THandler : IEventHandler<TEvent>;
 
-    void RemoveSubscription<TEvent, THandler>(string? topic)
+    void RemoveSubscription<TEvent, THandler>(string topic = null)
         where TEvent : Event
         where THandler : IEventHandler<TEvent>;
 }
