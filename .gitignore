@@ -425,3 +425,5 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore,visualstudio,visualstudiocode
+src/Company.SDK.Tests/Company.SDK.Tests.csproj
+src/Company.SDK.Tests/Program.cs
