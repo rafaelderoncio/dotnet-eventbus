@@ -5,10 +5,10 @@ namespace Company.SDK.EventBus.Abstractions.Events;
 public class Event : IDisposable
 {
     [JsonIgnore]
-    public string EventId { get; set; } = Guid.NewGuid().ToString();
+    public string EventId { get; } = Guid.NewGuid().ToString("N");
 
     [JsonIgnore]
-    public DateTime CreationDate { get; set; } = DateTime.UtcNow;
+    public DateTime CreationDate { get; } = DateTime.UtcNow;
 
     [JsonIgnore]
     public string ErrorMessage { get; set; } = string.Empty;
