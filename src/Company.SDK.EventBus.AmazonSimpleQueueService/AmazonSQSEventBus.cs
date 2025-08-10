@@ -9,7 +9,7 @@ using Amazon.SQS.Model;
 
 namespace Company.SDK.EventBus.AmazonSimpleQueueService;
 
-public class AmazonSQSEventBus(
+public sealed class AmazonSQSEventBus(
     IAmazonSQSConection conection,
     ISubscriptionManager subscriptionManager,
     ILogger<IEventBus> logger,
@@ -185,18 +185,18 @@ public class AmazonSQSEventBus(
         JsonSerializerOptions options = new() { PropertyNameCaseInsensitive = true };
         TEvent @event = JsonSerializer.Deserialize<TEvent>(message.Body, options);
 
-        @event.EventId = message.MessageId;
+        @event.SetEventId(message.MessageId);
 
         if (message.Attributes.TryGetValue("ApproximateReceiveCount", out string approximateReceiveCount))
         {
             if (int.TryParse(approximateReceiveCount, out int receiveCount))
-                @event.ReceiveCount = receiveCount;
+                @event.SetReceiveCount(receiveCount);
         }
 
         if (message.Attributes.TryGetValue("SentTimestamp", out var timestampStr))
         {
             var sentUnixMillis = long.Parse(timestampStr);
-            @event.CreationDate = DateTimeOffset.FromUnixTimeMilliseconds(sentUnixMillis).UtcDateTime;
+            @event.SetCreationDate(DateTimeOffset.FromUnixTimeMilliseconds(sentUnixMillis).UtcDateTime);
         }
 
         return @event;

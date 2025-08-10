@@ -1,6 +1,6 @@
 namespace Company.SDK.EventBus.AmazonSimpleQueueService;
 
-public class AmazonSQSConfiguration
+public sealed class AmazonSQSConfiguration
 {
     public string Region { get; set; } = string.Empty;
     public string Account { get; set; } = string.Empty;
