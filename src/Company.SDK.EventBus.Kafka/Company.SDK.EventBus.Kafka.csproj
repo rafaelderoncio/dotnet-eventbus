@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
@@ -11,8 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-
-    <PackageReference Include="Autofac" Version="8.3.0" />
+    <!-- <PackageReference Include="Autofac" Version="8.3.0" /> -->
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Confluent.Kafka" Version="2.11.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
