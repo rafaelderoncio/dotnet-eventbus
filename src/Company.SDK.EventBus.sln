@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.SDK.EventBus.Amazon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.SDK.EventBus.Kafka", "Company.SDK.EventBus.Kafka\Company.SDK.EventBus.Kafka.csproj", "{1D47529A-0961-4DD1-AFD1-5C98A31E4A76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.SDK.EventBus.RabbitMq", "Company.SDK.EventBus.RabbitMq\Company.SDK.EventBus.RabbitMq.csproj", "{0617B55F-0FAB-49A7-8C05-D8C994824D6F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.SDK.EventBus.RabbitMQ", "Company.SDK.EventBus.RabbitMQ\Company.SDK.EventBus.RabbitMQ.csproj", "{0617B55F-0FAB-49A7-8C05-D8C994824D6F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.SDK.EventBus", "Company.SDK.EventBus.Abstractions\Company.SDK.EventBus.csproj", "{96F66C10-BD7D-4571-80B6-00391A615DB8}"
 EndProject
