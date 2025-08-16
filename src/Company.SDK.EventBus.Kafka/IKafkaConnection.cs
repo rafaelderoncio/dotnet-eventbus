@@ -1,4 +1,3 @@
-using System;
 using Company.SDK.EventBus.Abstractions.Events;
 using Confluent.Kafka;
 

@@ -7,7 +7,7 @@ public sealed class KafkaConfiguration
     public string BootstrapServers { get; set; }
     public string GroupId { get; set; }
     public Acks Acks { get; set; } = Acks.Leader;
-    public SecurityProtocol SecurityProtocol { get; set; } = SecurityProtocol.Plaintext;
+    public SecurityProtocol SecurityProtocol { get; set; } = SecurityProtocol.SaslPlaintext;
     public SaslMechanism SaslMechanism { get; set; } = SaslMechanism.Plain;
     public AutoOffsetReset AutoOffsetReset { get; set; } = AutoOffsetReset.Earliest;
     public string SaslUsername { get; set; } = string.Empty;
